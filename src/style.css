@@ -123,6 +123,12 @@ body {
   margin: 0 0.3em;
   background-color: transparent;
   border: transparent;
+  outline:1px solid transparent;
+}
+.showbtn:hover,
+.showbtn:focus{
+  outline: 1px solid transparent;
+  border: 1px solid transparent;
 }
 
 .btn {
