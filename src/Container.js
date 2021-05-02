@@ -1,47 +1,36 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "./Card";
-import Loading from "./Loading";
+import data from "./data";
+import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
+import {FaQuoteLeft} from "react-icons/fa";
+
 
 
 const Container = () => {
-    const [places, setPlaces] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
-    const url = 'https://course-api.com/react-tours-project';
-   try{
-    const fetchData = async (url) => {
-        const response = await fetch(url);
-        const data = await response.json();
-        setPlaces(data);
-        setIsLoading(false);
-        return data;
+    const maxLength = data.length - 1;
+    const minLength = 0;
+    var [index, setIndex] = useState(minLength);
+    const increase = () => {
+        (index === maxLength) ? setIndex(minLength) : setIndex(++index);
     }
-    useEffect(() => {
-        fetchData(url);
-    }, []);
- }
-
-   catch(e){
-       console.log(e);
-   }
-
-   const deleteCard=(id)=>{
-       const modifiedPlaces= places.filter((place)=>(place.id!==id));
-       setPlaces(modifiedPlaces);
+    const decrease = () => {
+        (index === minLength) ? setIndex(maxLength) : setIndex(--index);
     }
-  
-    if (isLoading) {
-        return <Loading />
+    const randomIndex = () => {
+        const randomIndex = Math.floor(minLength + ((maxLength - minLength) * Math.random()));
+        setIndex(randomIndex);
     }
     return (
         <>
-        <h1 className="main__tittle">Welcome to traveljit</h1>
-        <div className="container">
-             {
-                 places.map((place)=>{
-                     return <Card key={place.id} place={place} deleteCard={deleteCard}/>
-                 })
-             }
-        </div>
+        <FaQuoteLeft className="quate__icon"/>
+            <IoIosArrowDropleft className="icon icon__left" onClick={decrease} />
+            <div className="container">
+                <div className="container__body">
+                    <Card index={index} />
+                </div>
+                <button className="btn" onClick={randomIndex}>Random</button>
+            </div>
+            <IoIosArrowDropright className="icon icon__right" onClick={increase} />
         </>
     )
 }
