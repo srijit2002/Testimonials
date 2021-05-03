@@ -122,26 +122,23 @@ body {
   background-color: var(--btn-hover);
 }
 
-.icon {
+.icon__container {
+  position: sticky;
+  top: 68%;
+  width: 96%;
+  display: flex;
+  justify-content: end;
+  z-index: 3;
+  padding: 0 1em;
+  margin-bottom: 2em;
+}
+.icon__container .icon {
   font-size: 2.5rem;
   color: var(--btn-neutral);
   font-weight: 100;
   cursor: pointer;
   transition: all 450ms ease;
-  position: absolute;
-  top: 70%;
-  left: 77.5%;
-  transform: translate(-50%, -50%);
   z-index: 2;
-}
-.icon__left {
-  margin-right: 2em;
-}
-.icon__right {
-  margin-left: 2em;
-}
-.icon:hover {
-  color: var(--btn-hover);
 }
 
 .quate__icon {
@@ -154,13 +151,40 @@ body {
 }
 
 @media only screen and (max-width: 520px) {
-  .icon {
-    left: 63%;
-  }
-
   .btn {
     margin-left: 1em;
     margin-bottom: 2em;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .btn {
+    display: block;
+    margin: 2em auto;
+  }
+
+  .icon__container {
+    flex-direction: column;
+    justify-items: flex-end;
+    align-items: flex-end;
+  }
+
+  .icon {
+    margin: 0.3em;
+  }
+
+  .card__details {
+    flex-direction: column;
+  }
+
+  .card__img {
+    min-width: 13ch;
+    min-height: 13ch;
+    margin-top: 1.3em;
+  }
+
+  .card__tittle,
+.card__subtittle {
+    text-align: center;
   }
 }
 

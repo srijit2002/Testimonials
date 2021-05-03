@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "./Card";
 import data from "./data";
 import { IoIosArrowDropleft, IoIosArrowDropright } from "react-icons/io";
-import {FaQuoteLeft} from "react-icons/fa";
+import { FaQuoteLeft } from "react-icons/fa";
 
 
 
@@ -22,15 +22,18 @@ const Container = () => {
     }
     return (
         <>
-        <FaQuoteLeft className="quate__icon"/>
-            <IoIosArrowDropleft className="icon icon__left" onClick={decrease} />
+            <FaQuoteLeft className="quate__icon" />
+            <div className="icon__container">
+                <IoIosArrowDropleft className="icon icon__left" onClick={decrease} />
+                <IoIosArrowDropright className="icon icon__right" onClick={increase} />
+            </div>
+
             <div className="container">
                 <div className="container__body">
                     <Card index={index} />
                 </div>
                 <button className="btn" onClick={randomIndex}>Random</button>
             </div>
-            <IoIosArrowDropright className="icon icon__right" onClick={increase} />
         </>
     )
 }
